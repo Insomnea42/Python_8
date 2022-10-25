@@ -23,7 +23,9 @@ def start_the_point(point):
         phone_number = input('Введите Номер телефона: ')
         salary = input('Введите Зарплату: ')
         create(id, last_name, first_name, position, phone_number, salary)
-
+    elif point ==5:
+        emp = int(input('Введите ID сотрудника: '))
+        delete(emp, employees)
 
     elif point == 7:
         print('Ты молодец, так держать')
@@ -97,13 +99,6 @@ def find_employee(id):
         if employee['id'] == id:
             return employee
 
-def find_employee(id):
-    employees = read_csv()
-
-    for employee in employees:
-        if employee['id'] == id:
-            return employee
-
 def create(id = '', last_name = '', first_name = '', position = '', phone_number = '', salary = ''):
     if(id == ''):
         print("Error: NO id")
@@ -129,6 +124,12 @@ def create(id = '', last_name = '', first_name = '', position = '', phone_number
     db.append(new_row)
     
     addinf_new(new_row)
+
+def delete(emp:int, employees:list):
+    for employee in employees:
+        if employee['id'] == emp:
+            employees.remove(employees[emp])
+    write_csv(employees)
 
 
 #в процесе, заебавсь
